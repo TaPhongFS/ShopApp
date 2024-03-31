@@ -10,6 +10,10 @@ export class OrderDTO {
 
     phone_number: string;
 
+    status: string;
+
+    order_date: Date;
+
     address: string;
 
     note: string;
@@ -37,5 +41,7 @@ export class OrderDTO {
         this.payment_method = data.payment_method;
         this.coupon_code = data.coupon_code;
         this.cart_items = data.cart_items;
+        this.status = data.status;
+        this.order_date = data.order_date;
     }
 }

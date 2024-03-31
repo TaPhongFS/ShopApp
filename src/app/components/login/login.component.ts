@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginDTO } from '../../dtos/user/login.dto';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { LoginResponse } from '../../responses/user/login.response';
 import { TokenService } from '../../services/token.service';
@@ -17,8 +17,14 @@ import { UserResponse } from '../../responses/user/user.response';
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm!: NgForm;
 
-  phoneNumber: string = '1122334466';
-  password: string = '123456';
+  /*
+  //Login user
+  phoneNumber: string = '33445566';
+  password: string = '123456789';
+  */
+  phoneNumber: string = '11223344';
+  password: string = '11223344';
+
   roles: Role[] = []; // Mảng roles
   rememberMe: boolean = true;
   selectedRole: Role | undefined; // Biến để lưu giá trị được chọn từ dropdown
@@ -30,6 +36,7 @@ export class LoginComponent implements OnInit {
   }
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private tokenService: TokenService,
     private roleService: RoleService
@@ -73,7 +80,11 @@ export class LoginComponent implements OnInit {
                 date_of_birth: new Date(response.date_of_birth),
               };
               this.userService.saveUserResponseToLocalStorage(this.userResponse);
-              this.router.navigate(['/']);
+              if (this.userResponse?.role.name == 'admin') {
+                this.router.navigate(['/admin']);
+              } else if (this.userResponse?.role.name == 'user') {
+                this.router.navigate(['/']);
+              }
             },
             complete: () => {
               debugger;

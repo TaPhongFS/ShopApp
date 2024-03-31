@@ -1,30 +1,37 @@
+@import '../../styles/shared-styles.scss';
+
 .container {
     color: white;
     height: 100vh;
 }
 
 .login-form {
-    background: rgb(12, 12, 55);
+    background-color: $shopapp-background-color;
     border-radius: 10px;
     padding: 20px;
     max-width: 500px;
     border: 1px solid rgb(32, 34, 60);
+    align-items: center;
+    justify-content: center;
 }
 
 .login-header {
     text-align: center;
-    color: rgb(105, 244, 181);
+    color: $shopapp-title-color;
     margin-bottom: 20px;
 }
 
 .form-control {
-    background: transparent;
-    color: white;
+    background-color: transparent;
     border: none;
+    color: white;
 }
 
 .form-control:focus {
-    box-shadow: none;
+    color: white;
+    background-color: transparent;
+    outline: none;
+    border-color: transparent;
 }
 
 .divider-nospace {
@@ -39,21 +46,23 @@
     position: absolute;
     top: 50%;
     right: 10px;
-    color: rgb(105, 244, 181);
+    transform: translateY(-50%);
+    color: $shopapp-title-color;
     cursor: pointer;
 }
 
 .checkbox-text {
-    display: flex;
     color: rgb(243, 165, 42);
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
 }
 
+/* Màu checkbox khi được chọn */
 .checkbox-text input[type="checkbox"]:checked {
     border-color: white;
-    background-color: rgb(233, 66, 178);
+    background-color: $shopapp-tint-color;
 }
 
 .form-check-input {
@@ -61,7 +70,7 @@
 }
 
 .register-link {
-    color: rgb(105, 244, 181);
+    color: $shopapp-title-color;
     text-decoration: none;
 }
 
@@ -69,30 +78,33 @@
     margin-top: 20px;
     width: 200px;
     color: white;
-    border: 1px solid rgb(225, 64, 180);
+    background-color: $shopapp-background-color !important;
+    border: 1px solid $shopapp-tint-color;
 }
 
-.access-right option {
-    background: rgb(12, 12, 55);
+.access-right:focus {
+    border: 1px solid $shopapp-tint-color;
 }
 
 .form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgba(243, 165, 42, 0.4);
     opacity: 1;
+    /* Firefox */
 }
 
 .form-control:-ms-input-placeholder {
-    /*Internet Explorer 10-11*/
+    /* Internet Explorer 10-11 */
     color: rgba(243, 165, 42, 0.4);
 }
 
 .form-control::-ms-input-placeholder {
-    /*Microsoft Edge*/
+    /* Microsoft Edge */
     color: rgba(243, 165, 42, 0.4);
 }
 
 .login-button {
-    background: linear-gradient(to right, rgb(225, 64, 180), rgb(126, 43, 237));
+    background: linear-gradient(to right, $shopapp-tint-color, $shopapp-color);
     color: white;
     border-radius: 30px;
     width: 100%;
@@ -103,6 +115,7 @@
 
 .divider {
     height: 1px;
-    background: rgb(243, 165, 42);
+    background-color: rgb(243, 165, 42);
+    /* background-color: rgb(105, 244, 181) */
     margin: 20px;
 }

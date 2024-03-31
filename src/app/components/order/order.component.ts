@@ -23,7 +23,9 @@ export class OrderComponent implements OnInit {
     user_id: 5, // Thay bằng user_id thích hợp
     fullname: '', // Khởi tạo rỗng, sẽ được điền từ form
     email: '', // Khởi tạo rỗng, sẽ được điền từ form
-    phone_number: '', // Khởi tạo rỗng, sẽ được điền từ form
+    phone_number: '',
+    status: 'pending',
+    order_date: new Date(), // Khởi tạo rỗng, sẽ được điền từ form
     address: '', // Khởi tạo rỗng, sẽ được điền từ form
     note: '', // Có thể thêm trường ghi chú nếu cần
     total_money: 0, // Sẽ được tính toán dựa trên giỏ hàng và mã giảm giá

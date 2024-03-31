@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AdminModule } from './components/admin/admin.module';
 
 
 @NgModule({
@@ -29,7 +31,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OrderDetailComponent,
     LoginComponent,
     RegisterComponent,
-    AppComponent
+    AppComponent,
+    UserProfileComponent,
+    AppComponent,
+    // AdminComponent,
+    // OrderAdminComponent,
+    // ProductAdminComponent,
+    // CategoryAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    AdminModule
   ],
   providers: [
     {

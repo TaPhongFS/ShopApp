@@ -9,13 +9,22 @@ import {
 } from './components/detail-product/detail-product.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderDetailComponent } from './components/order-detail/order.detail.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthGuardFn } from './guards/auth.guard';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminGuardFn } from './guards/admin.guard';
+import { OrderAdminComponent } from './components/admin/order/order.admin.component';
+import { ProductAdminComponent } from './components/admin/product/product.admin.component';
+import { CategoryAdminComponent } from './components/admin/category/category.admin.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'admin', component: AdminComponent, canActivate: [AdminGuardFn] },
     { path: 'register', component: RegisterComponent },
     { path: 'detail-product/:id', component: DetailProductComponent },
-    { path: 'orders', component: OrderComponent },
+    { path: 'orders', component: OrderComponent, canActivate: [AuthGuardFn] },
+    { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuardFn] },
     { path: 'orders/:id', component: OrderDetailComponent },
 ];
 
