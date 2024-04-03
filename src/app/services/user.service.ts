@@ -97,4 +97,14 @@ export class UserService {
       // Handle the error as needed
     }
   }
+
+
+  saveReset(check: number): void {
+    localStorage.setItem('checked', check.toString());
+  }
+
+  getReset(): number {
+    const checked = localStorage.getItem('checked');
+    return parseInt(checked!);
+  }
 }
