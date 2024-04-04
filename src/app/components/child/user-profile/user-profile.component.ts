@@ -93,13 +93,15 @@ export class UserProfileComponent implements OnInit {
           next: (response: any) => {
             this.userService.removeUserFromLocalStorage();
             this.tokenService.removeToken();
-            this.router.navigate(['/login']);
+            this.router.navigate(['/home']);
+            this.userService.saveReset(1);
           },
           error: (error: any) => {
             alert(error.error.message);
           }
         });
     } else {
+      alert('Mật khẩu là bắt buộc')
       if (this.userProfileForm.hasError('passwordMismatch')) {
         alert('Mật khẩu và mật khẩu gõ lại chưa chính xác')
       }
