@@ -37,6 +37,33 @@ export class DetailOrderAdminComponent implements OnInit {
         order_details: [],
 
     };
+    orderData: OrderDTO = {
+        user_id: 0,
+
+        fullname: '',
+
+        email: '',
+
+        phone_number: '',
+
+        status: '',
+
+        order_date: new Date(),
+
+        address: '',
+
+        note: '',
+
+        total_money: 0,
+
+        shipping_method: '',
+
+        payment_method: '',
+
+        coupon_code: '',
+
+        cart_items: []
+    }
     constructor(
         private orderService: OrderService,
         private route: ActivatedRoute,
@@ -64,7 +91,7 @@ export class DetailOrderAdminComponent implements OnInit {
                 if (response.order_date) {
                     this.orderResponse.order_date = new Date(
                         response.order_date[0],
-                        response.order_date[1],
+                        response.order_date[1] - 1,
                         response.order_date[2]
                     );
                 }
@@ -79,7 +106,7 @@ export class DetailOrderAdminComponent implements OnInit {
                 if (response.shipping_date) {
                     this.orderResponse.shipping_date = new Date(
                         response.shipping_date[0],
-                        response.shipping_date[1],
+                        response.shipping_date[1] - 1,
                         response.shipping_date[2]
                     );
                 }
@@ -99,8 +126,18 @@ export class DetailOrderAdminComponent implements OnInit {
 
     saveOrder(): void {
         debugger
+        const localDate = {
+            year: this.orderResponse.order_date.getFullYear(),
+            month: this.orderResponse.order_date.getMonth() + 1, // Thêm 1 để lấy giá trị tháng từ 1 đến 12
+            day: this.orderResponse.order_date.getDate(),
+        };
+        this.orderData = {
+            ...this.orderData,
+            ...this.orderResponse
+        }
+        this.orderData.order_date = localDate;
         this.orderService
-            .updateOrder(this.orderId, new OrderDTO(this.orderResponse))
+            .updateOrder(this.orderId, this.orderData)
             .subscribe({
                 next: (response: any) => {
                     debugger

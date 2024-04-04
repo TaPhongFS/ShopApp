@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   userResponse?: UserResponse | null;
   isPopoverOpen = false;
   activeNavItem: number = 0;
+  role: number = 0;
 
   constructor(
     private userService: UserService,
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
+    this.role = this.userResponse ? this.userResponse?.role.id : 0;
   }
 
   togglePopover(event: Event): void {
@@ -45,6 +47,7 @@ export class HeaderComponent implements OnInit {
       this.userResponse = this.userService.getUserResponseFromLocalStorage();
       this.router.navigate(['/login']);
       this.activeNavItem = 3;
+      this.role = 0;
     }
     this.isPopoverOpen = false; // Close the popover after clicking an item    
   }

@@ -1,5 +1,9 @@
 <div class="container-fluid">
     <h1>Orders Admin Page</h1>
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="keyword">
+        <button class="btn btn-primary" type="button" (click)="search()">Tìm kiếm</button>
+    </div>
     <table class="table">
         <thead>
             <tr>

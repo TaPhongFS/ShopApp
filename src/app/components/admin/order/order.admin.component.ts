@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Order } from '../../../models/order';
 import { OrderService } from '../../../services/order.service';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { OrderResponse } from '../../../responses/order/order.response';
 import { Location } from '@angular/common';
 
@@ -36,6 +30,13 @@ export class OrderAdminComponent implements OnInit {
         debugger
         this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
     }
+
+    search(): void {
+        this.currentPage = 1;
+        this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
+        this.keyword = "";
+    }
+
     getAllOrders(keyword: string, page: number, limit: number) {
         debugger
         this.orderService.getAllOrders(keyword, page, limit).subscribe({

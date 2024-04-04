@@ -12,7 +12,7 @@ export class OrderDTO {
 
     status: string;
 
-    order_date: Date;
+    order_date: any;
 
     address: string;
 

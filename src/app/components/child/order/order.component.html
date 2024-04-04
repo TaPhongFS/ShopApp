@@ -102,11 +102,13 @@
                 <div class="mt-3">
                     <h4 class="product-header">Nhập coupon</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Nhập coupon">
-                        <button class="btn btn-gradient" type="button">Áp dụng</button>
+                        <input type="text" class="form-control" placeholder="Nhập coupon" formControlName="coupon_code">
+                        <button class="btn btn-gradient" type="button" (click)="applyCoupon()"
+                            [ngClass]="{'disabled': isButtonDisabled}">Áp
+                            dụng</button>
                     </div>
                 </div>
-                <div class="text-start mt-3">
+                <div class=" text-start mt-3">
                     <button (click)="placeOrder()" class="btn btn-gradient" type="button">Đặt hàng</button>
                 </div>
             </div>

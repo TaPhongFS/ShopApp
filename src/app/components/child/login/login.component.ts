@@ -78,9 +78,8 @@ export class LoginComponent implements OnInit {
                 date_of_birth: new Date(response.date_of_birth),
               };
               this.userService.saveUserResponseToLocalStorage(this.userResponse);
-              window.location.reload();
               if (this.userResponse?.role.name == 'admin') {
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin/orders']);
               } else if (this.userResponse?.role.name == 'user') {
                 this.router.navigate(['/home']);
                 this.userService.saveReset(1);

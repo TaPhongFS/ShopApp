@@ -19,7 +19,8 @@ export class OrderComponent implements OnInit {
   orderForm: FormGroup; // Đối tượng FormGroup để quản lý dữ liệu của form
   cartItems: { product: Product, quantity: number }[] = [];
   couponCode: string = ''; // Mã giảm giá
-  totalAmount: number = 0; // Tổng tiền
+  totalAmount: number = 0;
+  isButtonDisabled = false// Tổng tiền
   orderData: OrderDTO = {
     user_id: 5, // Thay bằng user_id thích hợp
     fullname: '', // Khởi tạo rỗng, sẽ được điền từ form
@@ -46,16 +47,16 @@ export class OrderComponent implements OnInit {
     private router: Router
   ) {
     this.orderForm = this.fb.group({
-      fullname: ['hoàng xx', Validators.required], // fullname là FormControl bắt buộc      
-      email: ['hoang234@gmail.com', [Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
-      phone_number: ['11445547', [Validators.required, Validators.minLength(6)]], // phone_number bắt buộc và ít nhất 6 ký tự
-      address: ['nhà x ngõ y', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
-      note: ['dễ vữ'],
+      fullname: ['', Validators.required], // fullname là FormControl bắt buộc      
+      email: ['', [Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
+      phone_number: ['', [Validators.required, Validators.minLength(6)]], // phone_number bắt buộc và ít nhất 6 ký tự
+      address: ['', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
+      note: [''],
       shipping_method: ['express'],
-      payment_method: ['cod']
+      payment_method: ['cod'],
+      coupon_code: ['']
     });
   }
-
 
   ngOnInit(): void {
     // Lấy danh sách sản phẩm từ giỏ hàng
@@ -157,7 +158,10 @@ export class OrderComponent implements OnInit {
 
   // Hàm xử lý việc áp dụng mã giảm giá
   applyCoupon(): void {
-    // Viết mã xử lý áp dụng mã giảm giá ở đây
-    // Cập nhật giá trị totalAmount dựa trên mã giảm giá nếu áp dụng
+    debugger
+    if (this.orderForm.get('coupon_code')?.value == "123") {
+      this.totalAmount = this.totalAmount - this.totalAmount * 10 / 100;
+      this.isButtonDisabled = true;
+    }
   }
 }
