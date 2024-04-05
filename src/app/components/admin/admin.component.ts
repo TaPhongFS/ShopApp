@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
     this.userService.removeUserFromLocalStorage();
     this.tokenService.removeToken();
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   showAdminComponent(componentName: string): void {

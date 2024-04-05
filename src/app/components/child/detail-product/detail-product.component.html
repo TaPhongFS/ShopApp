@@ -39,17 +39,19 @@
                 <h2>{{ product?.name }}</h2>
                 <p>{{ product?.description }}</p>
                 <p>Giá: ${{ product?.price }}</p>
-                <div class="product-actions">
-                    <button class="btn btn-primary" (click)="addToCart()">Thêm vào giỏ hàng</button>
-                    <button class="btn btn-success" (click)="buyNow()">Mua ngay</button>
-                </div>
-                <div class="product-quantity">
-                    <div class="border-wrapper">
-                        <button (click)="decreaseQuantity()">-</button>
-                        <input type="text" [value]="quantity">
-                        <button (click)="increaseQuantity()">+</button>
+                <ng-container *ngIf="userResponse && userResponse.role.id === 1">
+                    <div class="product-actions">
+                        <button class="btn btn-primary" (click)="addToCart()">Thêm vào giỏ hàng</button>
+                        <button class="btn btn-success" (click)="buyNow()">Mua ngay</button>
                     </div>
-                </div>
+                    <div class="product-quantity">
+                        <div class="border-wrapper">
+                            <button (click)="decreaseQuantity()">-</button>
+                            <input type="text" [value]="quantity">
+                            <button (click)="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>

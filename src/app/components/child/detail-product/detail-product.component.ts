@@ -7,6 +7,8 @@ import { Product } from '../../../models/product';
 import { ProductImage } from '../../../models/product.image';
 import { environment } from '../../../environments/environment';
 import { CartService } from '../../../services/cart.service';
+import { UserService } from '../../../services/user.service';
+import { UserResponse } from '../../../responses/user/user.response';
 
 @Component({
   selector: 'app-detail-product',
@@ -16,12 +18,14 @@ import { CartService } from '../../../services/cart.service';
 
 export class DetailProductComponent implements OnInit {
   product?: Product;
+  userResponse?: UserResponse | null;
   productId: number = 0;
   currentImageIndex: number = 0;
   quantity: number = 1;
   constructor(
     private productService: ProductService,
     private cartService: CartService,
+    private userService: UserService,
     // private categoryService: CategoryService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -29,6 +33,7 @@ export class DetailProductComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.userResponse = this.userService.getUserResponseFromLocalStorage();
     // Lấy productId từ URL      
     const idParam = this.activatedRoute.snapshot.paramMap.get('id');
     debugger

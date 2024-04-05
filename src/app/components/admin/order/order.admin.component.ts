@@ -13,7 +13,7 @@ export class OrderAdminComponent implements OnInit {
     orders: OrderResponse[] = [];
     currentPage: number = 1;
     itemsPerPage: number = 12;
-    pages: number[] = [];
+    // pages: number[] = [];
     totalPages: number = 0;
     keyword: string = "";
     visiblePages: number[] = [];

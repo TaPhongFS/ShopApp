@@ -17,12 +17,16 @@
     /* Center-align text in the header */
 }
 
+.header-title {
+    cursor: pointer;
+}
+
 #sidebar {
     background-color: #007bff !important;
     /* Primary color */
     color: white;
     /* Text color */
-    height: 100vh;
+    height: 100vh !important;
     overflow-y: auto;
     /* Add scrollbars if content overflows */
 }

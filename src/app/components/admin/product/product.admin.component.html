@@ -1,1 +1,69 @@
-<h1>This is Product Admin</h1>
+<div class="container-fluid">
+    <h1>This is Product Admin</h1>
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="keyword">
+        <button class="btn btn-primary" type="button" (click)="search()">Tìm kiếm</button>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="button" routerLink="/admin/add-product">Thêm mới</button>
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Create At</th>
+                <th>Update At</th>
+                <th>Category Id</th>
+                <!--
+        <th>Shipping Method</th>
+        <th>Shipping Address</th>
+        
+          <th>Shipping Date</th>
+        <th>Payment Method</th>
+        -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.created_at }}</td>
+                <td>{{ product.updated_at }}</td>
+                <td>{{ product.category_id }}</td>
+                <td>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" *ngIf="currentPage > 1">
+                    <a class="page-link" (click)="onPageChange(1)">First</a>
+                </li>
+                <li class="page-item" *ngIf="currentPage > 1">
+                    <a class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+                </li>
+                <ng-container *ngFor="let page of visiblePages">
+                    <li class="page-item" [ngClass]="{'active': page === currentPage}">
+                        <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+                    </li>
+                </ng-container>
+                <li class="page-item" *ngIf="currentPage < totalPages">
+                    <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+                </li>
+                <li class="page-item" *ngIf="currentPage < totalPages">
+                    <a class="page-link" (click)="onPageChange(totalPages)">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

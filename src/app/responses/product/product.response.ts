@@ -1,5 +1,6 @@
-import { ProductImage } from "./product.image";
-export interface Product {
+import { ProductImage } from "../../models/product.image";
+
+export interface ProductResponse {
     id: number;
     name: string;
     price: number;
@@ -8,8 +9,8 @@ export interface Product {
     category_id: number;
     url: string;
     product_images: ProductImage[];
-    created_at: Date;
-    updated_at: Date;
+    created_at: any;
+    updated_at: any;
 }
 
 
