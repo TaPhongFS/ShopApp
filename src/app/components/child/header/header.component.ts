@@ -27,10 +27,8 @@ export class HeaderComponent implements OnInit {
     private productService: ProductService,
     private tokenService: TokenService,
     private router: Router
-  ) {
+  ) { }
 
-
-  }
   ngOnInit() {
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
     this.activeNavItem = this.userService.getPage() ?? 0;
@@ -102,8 +100,11 @@ export class HeaderComponent implements OnInit {
 
 
 
-
   setActiveNavItem(index: number) {
     this.activeNavItem = index;
+    if (index == 0) {
+      this.userService.savePageProduct(1);
+      this.router.navigate(['/home']);
+    }
   }
 }

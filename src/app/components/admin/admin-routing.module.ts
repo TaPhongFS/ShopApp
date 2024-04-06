@@ -7,6 +7,7 @@ import { RouterModule } from "@angular/router";
 import { ProductAdminComponent } from "./product/product.admin.component";
 import { CategoryAdminComponent } from "./category/category.admin.component";
 import { AddProductComponent } from "./add-product/add.product.component";
+import { DetailProductComponent } from "./detail-product/detail.product.admin.component";
 
 const routes: Routes = [
     {
@@ -32,6 +33,10 @@ const routes: Routes = [
             {
                 path: 'add-product',
                 component: AddProductComponent
+            },
+            {
+                path: 'detail-product/:id',
+                component: DetailProductComponent
             },
         ]
     }

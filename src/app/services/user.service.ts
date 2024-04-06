@@ -117,4 +117,13 @@ export class UserService {
     return parseInt(numberPage!);
   }
 
+
+  savePageProduct(numberPage: number): void {
+    localStorage.setItem('numberPageProduct', numberPage.toString());
+  }
+
+  getPageProduct(): number {
+    const numberPage = localStorage.getItem('numberPageProduct');
+    return parseInt(numberPage!);
+  }
 }

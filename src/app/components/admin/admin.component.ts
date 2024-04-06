@@ -41,6 +41,7 @@ export class AdminComponent implements OnInit {
     } else if (componentName == 'products') {
       this.router.navigate(['/admin/products']);
     } else if (componentName == 'home') {
+      this.userService.savePageProduct(1);
       this.router.navigate(['/home']);
     }
   }

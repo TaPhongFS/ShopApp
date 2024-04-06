@@ -6,7 +6,7 @@
     </div>
     <table class="table">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>ID</th>
                 <th>User ID</th>
                 <th>Full Name</th>
@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let order of orders">
+            <tr *ngFor="let order of orders" class="text-center">
                 <td>{{ order.id }}</td>
                 <td>{{ order.user_id }}</td>
                 <td>{{ order.fullname }}</td>
@@ -47,7 +47,7 @@
             <td>{{ order.payment_method }}</td>
             -->
                 <td>
-                    <div style="display: flex; gap: 10px;">
+                    <div style="display: flex; gap: 10px; justify-content: center;">
                         <button (click)="viewDetails(order)" class="btn btn-primary" style="white-space: nowrap;">
                             View Details
                         </button>

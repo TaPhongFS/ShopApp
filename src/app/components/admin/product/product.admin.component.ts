@@ -102,5 +102,9 @@ export class ProductAdminComponent implements OnInit {
             });
         }
     }
+
+    updateProduct(id: number) {
+        this.router.navigate(['/admin/detail-product', id]);
+    }
 }
 

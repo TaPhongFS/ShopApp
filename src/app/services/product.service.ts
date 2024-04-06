@@ -24,8 +24,8 @@ export class ProductService {
         return this.http.get<Product[]>(this.apiGetProducts, { params });
     }
 
-    getDetailProduct(productId: number) {
-        return this.http.get(`${environment.apiBaseUrl}/products/${productId}`);
+    getDetailProduct(productId: number): Observable<Product> {
+        return this.http.get<Product>(`${environment.apiBaseUrl}/products/${productId}`);
     }
 
     getProductsByIds(productIds: number[]): Observable<Product[]> {
@@ -37,6 +37,10 @@ export class ProductService {
 
     createProduct(product: ProductDTO): Observable<any> {
         return this.http.post(this.apiGetProducts, product);
+    }
+
+    updateProduct(id: number, product: ProductDTO): Observable<any> {
+        return this.http.put(`${environment.apiBaseUrl}/products/${id}`, product);
     }
 
 

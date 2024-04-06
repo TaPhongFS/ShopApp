@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = []; // Dữ liệu động từ categoryService
   selectedCategoryId: number = 0; // Giá trị category được chọn
-  currentPage: number = 1;
+  currentPage: number = this.userService.getPageProduct() || 1;
   itemsPerPage: number = 12;
   pages: number[] = [];
   totalPages: number = 0;
@@ -64,11 +64,11 @@ export class HomeComponent implements OnInit {
   }
 
   getProducts(keyword: string, selectedCategoryId: number, page: number, limit: number) {
+    debugger
     this.productService.getProducts(keyword, selectedCategoryId, page, limit).subscribe({
       next: (response: any) => {
         debugger
         response.products.forEach((product: Product) => {
-          debugger
           product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
         });
         this.products = response.products;
@@ -86,7 +86,8 @@ export class HomeComponent implements OnInit {
   }
   onPageChange(page: number) {
     debugger;
-    this.currentPage = page;
+    this.userService.savePageProduct(page);
+    this.userService.savePage(0);
     this.getProducts(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
   }
 
