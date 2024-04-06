@@ -37,12 +37,14 @@ table {
     border: 1px solid white;
     border-spacing: 0;
     background-color: $shopapp-background-color;
+    overflow: hidden;
 }
 
 th,
 td {
     padding: 10px;
     text-align: center;
+    border: 1px solid white;
 }
 
 .btn-gradient {

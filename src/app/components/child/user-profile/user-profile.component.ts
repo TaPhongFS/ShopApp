@@ -93,7 +93,8 @@ export class UserProfileComponent implements OnInit {
           next: (response: any) => {
             this.userService.removeUserFromLocalStorage();
             this.tokenService.removeToken();
-            this.router.navigate(['/home']);
+            this.router.navigate(['/login']);
+            this.userService.savePage(3);
             this.userService.saveReset(1);
           },
           error: (error: any) => {

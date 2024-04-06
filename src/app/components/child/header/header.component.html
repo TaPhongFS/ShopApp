@@ -15,8 +15,36 @@
                     </li>
                     <ng-container *ngIf="userResponse && userResponse.role.id === 1">
                         <li class="nav-item">
-                            <a class="nav-link" [ngClass]="{ 'active': activeNavItem === 1 }"
-                                (click)="setActiveNavItem(1)" routerLink="/home">Thông báo</a>
+                            <!-- <a class="nav-link" [ngClass]="{ 'active': activeNavItem === 1 }"
+                                (click)="setActiveNavItem(1)" routerLink="/home">Thông báo</a> -->
+                            <ng-container ngbPopover="Alert" popoverTitle="Alert Actions" triggers="click"
+                                [placement]="'bottom'">
+                                <a class="nav-link" [ngbPopover]="popoverContent" (click)="togglePopover($event)"
+                                    [ngClass]="{ 'active': activeNavItem === 1 }" (click)="setActiveNavItem(1)">
+                                    Thông báo
+                                </a>
+                                <ng-template #popoverContent>
+                                    <div class="popover-list">
+                                        <div *ngFor="let cart of cartItems">
+                                            <div class="cart-item" *ngIf="cart.checked == 1">
+                                                <div class="popover-item"><i
+                                                        class="fa-regular fa-circle-check fa-lg icon"
+                                                        style="color: #17a620;"></i>
+                                                    Đã thêm sản phẩm<br>
+                                                    <strong>{{cart.product.name}}</strong>
+                                                </div>
+                                            </div>
+                                            <div class="cart-item" *ngIf="cart.checked == 0">
+                                                <div class="popover-item"><i class="fa-regular fa-circle-xmark fa-lg"
+                                                        style="color: #c8210e;"></i>
+                                                    Đã xóa sản phẩm<br>
+                                                    <strong>{{cart.product.name}}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ng-container>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" [ngClass]="{ 'active': activeNavItem === 2 }"
@@ -28,8 +56,8 @@
                     </ng-container>
                     <li class="nav-item">
                         <ng-container *ngIf="userResponse">
-                            <ng-container ngbPopover="Tài khoản của tôi,Đơn mua,Đăng xuất" popoverTitle="User Actions"
-                                triggers="click" [placement]="'bottom'">
+                            <ng-container ngbPopover="User" popoverTitle="User Actions" triggers="click"
+                                [placement]="'bottom'">
                                 <a class="nav-link" [ngbPopover]="popoverContent" (click)="togglePopover($event)"
                                     [ngClass]="{ 'active': activeNavItem === 3 }" (click)="setActiveNavItem(3)">
                                     {{ userResponse.fullname }}
@@ -37,6 +65,7 @@
                                 <ng-template #popoverContent>
                                     <div class="popover-list">
                                         <a class="popover-item" (click)="handleItemClick(0)">Tài khoản của tôi</a>
+                                        <a class="popover-item" (click)="handleItemClick(1)">Đơn mua</a>
                                         <a class="popover-item" (click)="handleItemClick(2)">Đăng xuất</a>
                                     </div>
                                 </ng-template>

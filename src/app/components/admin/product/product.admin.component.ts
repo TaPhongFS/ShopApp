@@ -45,8 +45,8 @@ export class ProductAdminComponent implements OnInit {
                 response.products.forEach((product: Product) => {
                     debugger
                     product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
-                    product.created_at = moment(product.created_at).toDate();
-                    product.updated_at = moment(product.updated_at).toDate();
+                    product.created_at = moment(product.created_at).format('YYYY-MM-DD');
+                    product.updated_at = moment(product.updated_at).format('YYYY-MM-DD');
                 });
                 this.products = response.products;
                 this.totalPages = response.totalPages;

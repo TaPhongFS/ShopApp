@@ -41,6 +41,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.userService.getReset() == 1) {
+      location.reload();
+      this.userService.saveReset(0);
+    }
     // Gọi API lấy danh sách roles và lưu vào biến roles
     debugger
     this.roleService.getRoles().subscribe({
@@ -82,6 +86,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/admin/orders']);
               } else if (this.userResponse?.role.name == 'user') {
                 this.router.navigate(['/home']);
+                this.userService.savePage(0);
                 this.userService.saveReset(1);
               }
             },

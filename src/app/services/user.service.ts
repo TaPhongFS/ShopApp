@@ -107,4 +107,14 @@ export class UserService {
     const checked = localStorage.getItem('checked');
     return parseInt(checked!);
   }
+
+  savePage(numberPage: number): void {
+    localStorage.setItem('numberPage', numberPage.toString());
+  }
+
+  getPage(): number {
+    const numberPage = localStorage.getItem('numberPage');
+    return parseInt(numberPage!);
+  }
+
 }

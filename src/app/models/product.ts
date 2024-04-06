@@ -8,8 +8,8 @@ export interface Product {
     category_id: number;
     url: string;
     product_images: ProductImage[];
-    created_at: Date;
-    updated_at: Date;
+    created_at: any;
+    updated_at: any;
 }
 
 

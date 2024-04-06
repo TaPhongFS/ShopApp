@@ -131,6 +131,7 @@ export class OrderComponent implements OnInit {
           this.cartService.clearCart();
           this.router.navigate(['/home']);
           this.userService.saveReset(1);
+          this.userService.savePage(0);
         },
         complete: () => {
           debugger;
@@ -164,4 +165,11 @@ export class OrderComponent implements OnInit {
       this.isButtonDisabled = true;
     }
   }
+
+  delete(productId: number) {
+    this.cartService.deleteCart(productId);
+    this.userService.savePage(2);
+    location.reload();
+  }
+
 }

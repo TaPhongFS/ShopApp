@@ -37,6 +37,8 @@ header {
 
 .popover-list {
     padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
 .popover-body {
@@ -53,4 +55,8 @@ header {
 .popover-item:hover {
     background-color: #f0f0f0;
     color: $shopapp-color;
+}
+
+.cart-item {
+    border-bottom: 1px solid #DDD;
 }

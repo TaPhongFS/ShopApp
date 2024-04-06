@@ -25,6 +25,11 @@ export class OrderService {
         return this.http.get(url);
     }
 
+    getOrderByUserId(userId: number): Observable<OrderResponse[]> {
+        const url = `${environment.apiBaseUrl}/orders/user/${userId}`;
+        return this.http.get<OrderResponse[]>(url);
+    }
+
     getAllOrders(keyword: string,
         page: number, limit: number
     ): Observable<OrderResponse[]> {

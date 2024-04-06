@@ -8,13 +8,20 @@ import { Observable, of } from 'rxjs';
 })
 
 export class CartService {
-    private cart: Map<number, number> = new Map(); // Dùng Map để lưu trữ giỏ hàng, key là id sản phẩm, value là số lượng
+    private cart: Map<number, number> = new Map();
+    private checked: Map<number, number> = new Map();
+    // Dùng Map để lưu trữ giỏ hàng, key là id sản phẩm, value là số lượng
 
     constructor(private productService: ProductService) {
         // Lấy dữ liệu giỏ hàng từ localStorage khi khởi tạo service    
         const storedCart = localStorage.getItem('cart');
         if (storedCart) {
             this.cart = new Map(JSON.parse(storedCart));
+        }
+
+        const storedCheck = localStorage.getItem('check');
+        if (storedCheck) {
+            this.checked = new Map(JSON.parse(storedCheck));
         }
     }
 
@@ -27,8 +34,30 @@ export class CartService {
             // Nếu sản phẩm chưa có trong giỏ hàng, thêm sản phẩm vào với số lượng là `quantity`
             this.cart.set(productId, quantity);
         }
+        this.checked.set(productId, 1);
+        this.saveCheckToLocalStorage();
         // Sau khi thay đổi giỏ hàng, lưu trữ nó vào localStorage
         this.saveCartToLocalStorage();
+    }
+
+    deleteCart(productId: number) {
+        if (this.cart.has(productId)) {
+            this.cart.delete(productId);
+            this.checked.set(productId, 0);
+        }
+        this.saveCheckToLocalStorage();
+        this.saveCartToLocalStorage();
+    }
+
+    getListCheck(): Map<number, number> {
+        return this.checked;
+    }
+
+    getChecked(productId: number): boolean {
+        if (this.checked.has(productId)) {
+            return this.checked.get(productId) == 0;
+        }
+        return false;
     }
 
     getCart(): Map<number, number> {
@@ -39,9 +68,17 @@ export class CartService {
         debugger
         localStorage.setItem('cart', JSON.stringify(Array.from(this.cart.entries())));
     }
+
+    private saveCheckToLocalStorage(): void {
+        debugger
+        localStorage.setItem('check', JSON.stringify(Array.from(this.checked.entries())));
+    }
     // Hàm xóa dữ liệu giỏ hàng và cập nhật Local Storage
     clearCart(): void {
-        this.cart.clear(); // Xóa toàn bộ dữ liệu trong giỏ hàng
+        this.cart.clear();
+        // Xóa toàn bộ dữ liệu trong giỏ hàng
+        this.checked.clear();
+        this.saveCheckToLocalStorage();
         this.saveCartToLocalStorage(); // Lưu giỏ hàng mới vào Local Storage (trống)
     }
 }
