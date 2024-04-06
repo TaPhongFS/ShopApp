@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { Product } from '../models/product';
+import { ProductDTO } from '../dtos/product/product.dto';
 
 @Injectable({
     providedIn: 'root'
@@ -32,6 +33,10 @@ export class ProductService {
         debugger
         const params = new HttpParams().set('ids', productIds.join(','));
         return this.http.get<Product[]>(`${this.apiGetProducts}/by-ids`, { params });
+    }
+
+    createProduct(product: ProductDTO): Observable<any> {
+        return this.http.post(this.apiGetProducts, product);
     }
 
 

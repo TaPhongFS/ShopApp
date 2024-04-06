@@ -8,7 +8,8 @@ import { DetailOrderAdminComponent } from './detail-order/detail.order.admin.com
 import { ProductAdminComponent } from './product/product.admin.component';
 import { CategoryAdminComponent } from './category/category.admin.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddProductComponent } from './add-product/add.product.component';
 
 @NgModule({
     declarations: [
@@ -17,11 +18,13 @@ import { FormsModule } from '@angular/forms';
         DetailOrderAdminComponent,
         ProductAdminComponent,
         CategoryAdminComponent,
+        AddProductComponent
     ],
     imports: [
-        AdminRoutingModule, // import routes,
+        AdminRoutingModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class AdminModule { }
