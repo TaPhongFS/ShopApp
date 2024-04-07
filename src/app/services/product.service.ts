@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { Product } from '../models/product';
@@ -10,8 +10,17 @@ import { ProductDTO } from '../dtos/product/product.dto';
 })
 export class ProductService {
     private apiGetProducts = `${environment.apiBaseUrl}/products`;
+    // private apiConfig = {
+    //     headers: this.createHeaders()
+    // }
 
     constructor(private http: HttpClient) { }
+
+    // private createHeaders(): HttpHeaders {
+    //     return new HttpHeaders({
+    //         'Content-Type': 'multipart/form-data'
+    //     });
+    // }
 
     getProducts(keyword: string, categoryId: number,
         page: number, limit: number
@@ -48,4 +57,8 @@ export class ProductService {
         const url = `${environment.apiBaseUrl}/products/${id}`;
         return this.http.delete(url, { responseType: 'text' });
     }
+
+    // uploadImage(files: FormData, id: number) {
+    //     return this.http.post(`${environment.apiBaseUrl}/products/uploads/${id}`, files, this.apiConfig);
+    // }
 }

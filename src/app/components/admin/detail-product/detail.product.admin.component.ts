@@ -43,6 +43,7 @@ export class DetailProductComponent implements OnInit {
             description: [''],
             category_id: ['0']
         });
+
     }
 
 
@@ -62,7 +63,6 @@ export class DetailProductComponent implements OnInit {
                     description: product.description,
                     category_id: product.category_id
                 });
-                debugger
             },
             complete: () => {
                 debugger;
@@ -116,5 +116,34 @@ export class DetailProductComponent implements OnInit {
             alert('Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.');
         }
     }
+
+    // uploadImage() {
+    //     const formData = new FormData();
+    //     const element = document.getElementById('files');
+    //     if (element instanceof HTMLInputElement && element.type === 'file') {
+    //         const files = element.files;
+    //         for (let i = 0; i < files!.length; i++) {
+    //             formData.append('files', files![i]);
+    //         }
+    //         debugger
+    //         this.productService.uploadImage(formData, this.productId).subscribe({
+    //             next: (response) => {
+    //                 debugger;
+    //                 alert('Thêm ảnh thành công');
+    //                 location.reload();
+    //             },
+    //             complete: () => {
+    //                 debugger;
+    //             },
+    //             error: (error: any) => {
+    //                 debugger;
+    //                 alert(`Lỗi khi thêm ảnh: ${error}`);
+    //             },
+    //         })
+    //         // Xử lý danh sách file tại đây
+    //     } else {
+    //         console.error('Không tìm thấy phần tử input file có id "files"');
+    //     }
+    // }
 
 }

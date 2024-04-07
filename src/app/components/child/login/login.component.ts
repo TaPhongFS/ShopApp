@@ -87,6 +87,7 @@ export class LoginComponent implements OnInit {
               } else if (this.userResponse?.role.name == 'user') {
                 this.router.navigate(['/home']);
                 this.userService.savePage(0);
+                this.userService.savePageProduct(1);
                 this.userService.saveReset(1);
               }
             },
