@@ -13,11 +13,8 @@ export class CategoryService {
     private apiGetAllCategories = `${environment.apiBaseUrl}/categories/get-category-by-keyword`;
 
     constructor(private http: HttpClient) { }
-    getCategories(page: number, limit: number): Observable<Category[]> {
-        const params = new HttpParams()
-            .set('page', page.toString())
-            .set('limit', limit.toString());
-        return this.http.get<Category[]>(this.apiGetCategories, { params });
+    getCategories(): Observable<Category[]> {
+        return this.http.get<Category[]>(this.apiGetCategories);
     }
 
     getAllCategories(keyword: string,

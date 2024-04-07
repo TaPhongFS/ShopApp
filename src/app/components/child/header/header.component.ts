@@ -102,6 +102,7 @@ export class HeaderComponent implements OnInit {
 
   setActiveNavItem(index: number) {
     this.activeNavItem = index;
+    this.userService.savePage(index);
     if (index == 0) {
       this.userService.savePageProduct(1);
       this.router.navigate(['/home']);

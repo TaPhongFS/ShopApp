@@ -34,15 +34,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
-    this.getCategories(1, 100);
+    this.getCategories();
     if (this.userService.getReset() == 1) {
       location.reload();
       this.userService.saveReset(0);
     }
   }
 
-  getCategories(page: number, limit: number) {
-    this.categoryService.getCategories(page, limit).subscribe({
+  getCategories() {
+    this.categoryService.getCategories().subscribe({
       next: (categories: Category[]) => {
         debugger
         this.categories = categories;

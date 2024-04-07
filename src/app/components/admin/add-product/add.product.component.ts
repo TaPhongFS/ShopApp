@@ -46,11 +46,11 @@ export class AddProductComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.getCategories(1, 100);
+        this.getCategories();
     }
 
-    getCategories(page: number, limit: number) {
-        this.categoryService.getCategories(page, limit).subscribe({
+    getCategories() {
+        this.categoryService.getCategories().subscribe({
             next: (categories: Category[]) => {
                 debugger
                 this.categories = categories;
