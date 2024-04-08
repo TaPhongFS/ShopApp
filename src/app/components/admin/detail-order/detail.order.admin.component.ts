@@ -131,6 +131,7 @@ export class DetailOrderAdminComponent implements OnInit {
             month: this.orderResponse.order_date.getMonth() + 1, // Thêm 1 để lấy giá trị tháng từ 1 đến 12
             day: this.orderResponse.order_date.getDate(),
         };
+        debugger
         this.orderData = {
             ...this.orderData,
             ...this.orderResponse

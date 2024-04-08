@@ -18,7 +18,7 @@
                         <th scope="col">Ngày đặt</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let itemList of orderResponseList">
+                <tbody *ngFor="let itemList of orderResponseList.slice().reverse()">
                     <tr *ngFor="let item of itemList.order_details">
                         <td>
                             {{ itemList.fullname }}

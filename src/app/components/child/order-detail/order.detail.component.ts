@@ -32,7 +32,7 @@ export class OrderDetailComponent implements OnInit {
     this.orderService.getOrderByUserId(userId).subscribe({
       next: (response: OrderResponse[]) => {
         this.orderResponseList = response.map((item: OrderResponse) => {
-          item.order_date = moment(item.order_date).format('YYYY-MM-DD');
+          item.order_date = moment(item.order_date).subtract(1, 'months').format('YYYY-MM-DD');
 
           item.order_details = item.order_details.map((order_detail: OrderDetail) => {
             order_detail.product.thumbnail = `${environment.apiBaseUrl}/products/images/${order_detail.product.thumbnail}`;
