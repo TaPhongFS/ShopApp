@@ -36,6 +36,7 @@ export class ProductAdminComponent implements OnInit {
     search() {
         this.currentPage = 1;
         this.getProducts(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
+        this.keyword = "";
     }
 
     getProducts(keyword: string, selectedCategoryId: number, page: number, limit: number) {

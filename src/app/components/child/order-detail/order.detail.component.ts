@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../../models/product';
-import { CartService } from '../../../services/cart.service';
-import { ProductService } from '../../../services/product.service';
 import { OrderService } from '../../../services/order.service';
 import { environment } from '../../../environments/environment';
-import { OrderDTO } from '../../../dtos/order/order.dto';
 import { OrderResponse } from '../../../responses/order/order.response';
 import { OrderDetail } from '../../../models/order.detail';
 import { TokenService } from '../../../services/token.service';

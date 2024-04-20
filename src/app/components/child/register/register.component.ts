@@ -35,32 +35,36 @@ export class RegisterComponent {
 
 
   register() {
-    const registerDTO: RegisterDTO = {
-      "fullname": this.fullName,
-      "phone_number": this.phoneNumber,
-      "address": this.address,
-      "password": this.password,
-      "retype_password": this.retypePassword,
-      "date_of_birth": this.dateOfBirth,
-      "facebook_account_id": 0,
-      "google_account_id": 0,
-      "role_id": 1
+    if (this.isAccepted) {
+      const registerDTO: RegisterDTO = {
+        "fullname": this.fullName,
+        "phone_number": this.phoneNumber,
+        "address": this.address,
+        "password": this.password,
+        "retype_password": this.retypePassword,
+        "date_of_birth": this.dateOfBirth,
+        "facebook_account_id": 0,
+        "google_account_id": 0,
+        "role_id": 1
+      }
+      this.userService.register(registerDTO)
+        .subscribe({
+          next: (response: any) => {
+            debugger
+            alert("Đăng kí thành công")
+            this.router.navigate(['/login']);
+          },
+          complete: () => {
+            debugger
+          },
+          error: (error: any) => {
+            debugger
+            alert(`Cannot register, error: ${error.error}`)
+          }
+        })
+    } else {
+      alert("Bạn phải đồng ý các điều khoản!");
     }
-    this.userService.register(registerDTO)
-      .subscribe({
-        next: (response: any) => {
-          debugger
-          alert("Đăng kí thành công")
-          this.router.navigate(['/login']);
-        },
-        complete: () => {
-          debugger
-        },
-        error: (error: any) => {
-          debugger
-          alert(`Cannot register, error: ${error.error}`)
-        }
-      })
   }
 
   checkPasswordsMatch() {

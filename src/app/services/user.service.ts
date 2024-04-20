@@ -35,7 +35,7 @@ export class UserService {
   }
 
   getUserDetail(token: string) {
-    return this.http.post(this.apiUserDetail, {
+    return this.http.get(this.apiUserDetail, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
