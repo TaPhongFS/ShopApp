@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   */
   phoneNumber: string = '';
   password: string = '';
+  status: boolean = false;
 
   roles: Role[] = []; // Mảng roles
   rememberMe: boolean = true;
@@ -109,6 +110,10 @@ export class LoginComponent implements OnInit {
         alert(error?.error?.message);
       }
     });
+  }
+
+  changeStatus() {
+    this.status = !this.status;
   }
 
 
